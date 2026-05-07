@@ -6,7 +6,7 @@
 
 ISR(INT0_vect) /**< runs every time there is a change on the button */
 {
-    if (bit_is_set(BUTTON_PIN, BUTTON))
+    if ((BUTTON_PIN & (1 << BUTTON)))
         LED_PORT |= (1 << LED1);
     else
         LED_PORT &= ~(1 << LED1);
@@ -19,13 +19,17 @@ void initInterrupt0(void)
     sei();                 /**< set (global) interrupt enable bit */
 }
 
-int main(void)
+void setup(void)
 {
     LED_DDR = 0xff; /**< all leds active */
     DDRD = 0x00;    /**< pull-up */
     BUTTON_PORT |= (1 << BUTTON);
     initInterrupt0();
+}
 
+int main(void)
+{
+    setup();
     while (1)
     {
         _delay_ms(200);
