@@ -41,6 +41,10 @@ This project demonstrates the use of an external interrupt (INT0) on an AVR micr
 
 The internal pull‑up of PD2 is enabled, so connect the button between PD2 and GND. When the button is pressed, PD2 reads `0`; when released, it reads `1`.
 
+## Schematics
+![Schematics](./Interrupt.png)
+---
+
 ## Software Requirements
 - `avr-gcc` (toolchain)
 - `avr-libc`
